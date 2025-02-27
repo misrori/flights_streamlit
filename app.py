@@ -1,8 +1,7 @@
 import streamlit as st
 
 
-st.set_page_config( layout="wide", page_title="Felhok",page_icon="✈️",)
-
+st.set_page_config( layout="wide", page_title="Felhok.hu",page_icon="✈️",)
 
 # --- INTRO ---
 cheapest_site = st.Page(
@@ -41,8 +40,8 @@ pg = st.navigation(
 
 # --- SHARED ON ALL PAGES ---
 st.logo(
-    'https://i.ibb.co/Pgw52bM/Screenshot-from-2024-12-26-09-41-17-removebg-preview.png',
-    link="https://goldhandfinance.streamlit.app/",
+    'https://i.ibb.co/TMFDzvYG/f282897c-3f18-4dbe-b73b-bfaeee581317.png',
+    link="https://felhok.hu/",
     size="large")
 
 st.sidebar.markdown("Made with ❤️ by [Goldhandfinance](https://youtube.com/@goldhandfinance)")
