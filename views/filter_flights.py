@@ -4,13 +4,17 @@ from utils_data import get_data
 import plotly.express as px
 from datetime import datetime
 
-df, airports = get_data()
 
 st.fragment()
 def filter_flights():
 
     st.sidebar.header("Filter Options")
+        # Load data (replace with actual data sources)
+    df, airports = get_data()
+
     
+
+
 
     # Ensure date columns are in datetime format
     df['indulas'] = pd.to_datetime(df['indulas'])
@@ -26,6 +30,20 @@ def filter_flights():
     with col1:
         st.subheader("Utazás részletei")
         
+        # Continent filter radio button
+
+
+        selected_continent = st.radio("Válassz kontinenst", ['Európa', 'Ázsia'], horizontal=True)
+
+
+        if selected_continent == 'Ázsia':
+            #asia_cityes = airports[airports['continent'] == 'Asia']['city'].unique()
+            # filter df for asia cityes
+            df = df[df['varos'].isin(airports[airports['continent'] == 'Asia']['city'].unique())]
+        elif selected_continent == 'Európa':
+            df = df[df['varos'].isin(airports[airports['continent'] == 'Europe']['city'].unique())]
+    
+
         # Country filter checkbox
         enable_orszag = st.checkbox("Ország szűrő")
         if enable_orszag:

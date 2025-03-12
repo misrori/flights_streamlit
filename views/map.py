@@ -10,12 +10,24 @@ from folium.plugins import Search
 from streamlit_folium import st_folium
 import streamlit.components.v1 as components
 
-# Load data (replace with actual data sources)
-df, airports = get_data()
 
 
 st.fragment()
 def get_map():
+
+    # Load data (replace with actual data sources)
+    df, airports = get_data()
+
+    selected_continent = st.radio("Válassz kontinenst", ['Európa', 'Ázsia'], horizontal=True)
+
+    if selected_continent == 'Ázsia':
+        #asia_cityes = airports[airports['continent'] == 'Asia']['city'].unique()
+        # filter df for asia cityes
+        df = df[df['varos'].isin(airports[airports['continent'] == 'Asia']['city'].unique())]
+    elif selected_continent == 'Európa':
+        df = df[df['varos'].isin(airports[airports['continent'] == 'Europe']['city'].unique())]
+   
+
     cheapest_by_repter = df.groupby('repter_id').apply(lambda x: x.nsmallest(1, 'ar')).reset_index(drop=True)
 
     # join with airports

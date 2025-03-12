@@ -7,7 +7,6 @@ from utils_data import get_data
 #from streamlit_folium import st_folium
 
 # Load data (replace with actual data sources)
-df, airports = get_data()
 
 
 st.fragment()
@@ -15,6 +14,20 @@ def cheapest_fligts():
     # top 3 cheapest by every airport id
     st.write("Legolcsóbb repülőjegyek reptér szerint")
     st.write("Az alábbi táblázatban láthatóak a legolcsóbb repülőjegyek reptér szerint")
+
+    # Load data (replace with actual data sources)
+    df, airports = get_data()
+
+    selected_continent = st.radio("Válassz kontinenst", ['Európa', 'Ázsia'], horizontal=True)
+
+    if selected_continent == 'Ázsia':
+        #asia_cityes = airports[airports['continent'] == 'Asia']['city'].unique()
+        # filter df for asia cityes
+        df = df[df['varos'].isin(airports[airports['continent'] == 'Asia']['city'].unique())]
+    elif selected_continent == 'Európa':
+        df = df[df['varos'].isin(airports[airports['continent'] == 'Europe']['city'].unique())]
+   
+
     cheapest_by_repter = df.groupby('repter_id').apply(lambda x: x.nsmallest(1, 'ar')).reset_index(drop=True)
     cheapest_by_repter = cheapest_by_repter.sort_values(by='ar')
 

@@ -6,14 +6,14 @@ st.set_page_config( layout="wide", page_title="Felhok.hu",page_icon="✈️",)
 # --- INTRO ---
 cheapest_site = st.Page(
     "views/cheapest_flights.py",
-    title="Cheapest flights",
+    title="Legolcsóbb járatok",
     icon=":material/account_circle:",
     default=True,
 )
 
 filter_site = st.Page(
     "views/filter_flights.py",
-    title="Filter flights",
+    title="Járatok szűrése",
     icon=":material/trending_up:",
 )
 
@@ -24,16 +24,16 @@ filter_site = st.Page(
 
 map_site = st.Page(
     "views/map.py",
-    title="Térkép legolcsóbb repülések",
+    title="Térképen a legolcsóbb járatok",
     icon=":material/bar_chart:",
 )
 
 
 pg = st.navigation(
     {
-        "Cheapest flights": [cheapest_site],
-        "Filter flights": [filter_site],
-        "Map": [map_site],
+        "Legolcsóbb járatok": [cheapest_site],
+        "Járatok szűrése": [filter_site],
+        "Térkép": [map_site],
     }
 )
 
@@ -44,7 +44,7 @@ st.logo(
     link="https://felhok.hu/",
     size="large")
 
-st.sidebar.markdown("Made with ❤️ by [Goldhandfinance](https://youtube.com/@goldhandfinance)")
+st.sidebar.markdown("Szeretettel ❤️ by [Goldhandfinance](https://youtube.com/@goldhandfinance)")
 
 
 # --- RUN NAVIGATION ---
